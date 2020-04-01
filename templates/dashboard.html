@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+{% block body %}
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('{{ url_for('static', filename = 'img_dashboard/background-balance-business-commerce-583846.jpg')}}')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>Admin Panal</h1>
+            <span class="subheading">Manage your posts here</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+{%with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category,message in messages%}
+<div class="alert alert-{{category}} alert-dismissible fade show" role="alert" id="success-alert">
+  <center>{{message}}</center>
+   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+
+
+  <!-- Main Content -->
+  <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">  
+   <!-- Table -->
+   <h1>Basic Action</h1>
+   <td><a href="/edit/0"><button class="btn btn-primary" >Add a new post</button></a></td>
+   <!--<td><a href="/add_edit_experience_1"><button class="btn btn-primary" >Edit Experience</button></a></td>-->
+   <td><a href="/login"><button class="btn btn-primary ">Logout</button></a></td>
+   <hr>
+   
+   <!--<form action="/uploader" method="post" enctype="multipart/form-data">
+  <input type="file" id="file" name="file">
+  <button type="submit" class="btn btn-primary" id="sendMessageButton">Submit</button>
+</form>
+<hr>-->
+   
+
+   <h1>Edit posts</h1>
+
+
+   <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Sno</th>
+      <th scope="col">Title</th>
+      <th scope="col">Date</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+
+{% for post in posts %}
+    <tr>
+      <th scope="row">{{post.sno}}</th>
+      <td>{{post.title}}</td>
+      <td>{{post.date}}</td>
+      <td><a href="/edit/{{post.sno}}"><button class="btn btn-primary" >Edit</button></a></td>
+      <td><a href="/delete/{{post.sno}}"><button class="btn btn-primary" >Delete</button></a></td>
+    </tr>
+    
+{% endfor %}
+
+  </tbody>
+</table>
+  
+      </div>
+    </div>
+  </div>
+  {% endblock %}
+
+    
